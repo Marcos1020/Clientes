@@ -1,0 +1,71 @@
+##CONFIGS SPRING
+server:
+  port: ${PORT:8080}
+
+##APP CONFIGS
+spring:
+  application:
+    rabbitmq:
+      password: guest
+      port: '5672'
+      host: localhost
+      username: guest
+      h2:
+        console:
+          enabled: 'true'
+      profiles: test
+      kafka:
+        streams:
+          bootstrap-servers: localhost:9092, 192.168.0.1:9092
+    queue:
+      order:
+        name: OrderQueue
+
+    name: padrao
+  mail:
+    host: smtp.gmail.com
+    password: njtujfularaimbvf
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+          starttls:
+            enable: true
+            required: true
+    test-connection: false
+    username: marcossanches710@gmail.com
+
+  main:
+    allow-bean-definition-overriding: true
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+##CONFIGS SPRING ACTUATOR
+management:
+  endpoints:
+    web:
+      base-path: /
+    exposure:
+      include: metrics,health
+    metrics:
+      enabled: true
+    health:
+      show-details: always
+
+
+
