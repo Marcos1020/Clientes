@@ -22,10 +22,6 @@ public class UserController {
     @Value("${access.token}")
     private String token;
 
-    public UserController(){
-        this.userService = userService;
-    }
-
     @PostMapping
     public ResponseEntity<UserResponse>newUser(@RequestBody UserRequest usuarioRequest, @RequestHeader String accessToken) throws PreconditionFailedException {
         if(!accessToken.equals(token)){
