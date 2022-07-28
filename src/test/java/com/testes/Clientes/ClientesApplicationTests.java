@@ -1,8 +1,8 @@
 package com.testes.Clientes;
 
 import com.testes.Clientes.Repository.UserRepository;
-import com.testes.Clientes.Request.UserRequest;
-import com.testes.Clientes.Response.UserResponse;
+import com.testes.Clientes.Controller.Request.UserRequest;
+import com.testes.Clientes.Controller.Response.UserResponse;
 import com.testes.Clientes.Service.UserService;
 import com.testes.Clientes.enums.StatusUser;
 import com.testes.Clientes.exception.PreconditionFailedException;
