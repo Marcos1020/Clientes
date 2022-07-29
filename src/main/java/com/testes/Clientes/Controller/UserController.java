@@ -1,7 +1,7 @@
 package com.testes.Clientes.Controller;
 
-import com.testes.Clientes.Request.UserRequest;
-import com.testes.Clientes.Response.UserResponse;
+import com.testes.Clientes.Controller.Request.UserRequest;
+import com.testes.Clientes.Controller.Response.UserResponse;
 import com.testes.Clientes.Service.UserService;
 import com.testes.Clientes.exception.NotFoundException;
 import com.testes.Clientes.exception.ObjectAlreadyExists;
@@ -27,8 +27,10 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse>newUser(@RequestBody UserRequest usuarioRequest, @RequestHeader String accessToken) throws PreconditionFailedException {
-        if(!accessToken.equals(token)){
+    public ResponseEntity<UserResponse> newUser(
+            @RequestBody UserRequest usuarioRequest,
+            @RequestHeader String accessToken) throws PreconditionFailedException {
+        if (!accessToken.equals(token)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         UserResponse response = this.userService.newUser(usuarioRequest);
@@ -37,19 +39,22 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<UserResponse>search(@PathVariable("id") int idUsuario,@RequestHeader String accessToken) throws NotFoundException{
-        if(!accessToken.equals(token)){
+    public ResponseEntity<UserResponse> search(
+            @PathVariable("id") int idUsuario,
+            @RequestHeader String accessToken) throws NotFoundException {
+        if (!accessToken.equals(token)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         final UserResponse userResponse = this.userService.searchById(idUsuario);
-        return new ResponseEntity<>(userResponse,HttpStatus.OK);
+        return new ResponseEntity<>(userResponse, HttpStatus.OK);
 
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<UserResponse>userUpdate (
-            @PathVariable("id") int idUsuario, @RequestBody UserRequest userRequest,@RequestHeader String accessToken) throws NotFoundException {
-        if(!accessToken.equals(token)){
+    public ResponseEntity<UserResponse> userUpdate(
+            @PathVariable("id") int idUsuario, @RequestBody UserRequest userRequest,
+            @RequestHeader String accessToken) throws NotFoundException {
+        if (!accessToken.equals(token)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         final UserResponse userResponse = this.userService.updateUser(idUsuario, userRequest);
@@ -57,14 +62,13 @@ public class UserController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> inativar(@PathVariable("id") int idUsuario,@RequestHeader String accessToken) throws ObjectAlreadyExists{
-        if(!accessToken.equals(token)){
+    public ResponseEntity<Void> inativar(
+            @PathVariable("id") int idUsuario,
+            @RequestHeader String accessToken) throws ObjectAlreadyExists {
+        if (!accessToken.equals(token)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         this.userService.inativar(idUsuario);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-
-
-
 }

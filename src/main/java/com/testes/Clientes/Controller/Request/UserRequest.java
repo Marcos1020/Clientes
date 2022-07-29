@@ -1,4 +1,4 @@
-package com.testes.Clientes.Request;
+package com.testes.Clientes.Controller.Request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

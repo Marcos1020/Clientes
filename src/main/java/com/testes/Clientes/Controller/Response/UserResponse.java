@@ -1,4 +1,4 @@
-package com.testes.Clientes.Response;
+package com.testes.Clientes.Controller.Response;
 
 import com.testes.Clientes.enums.StatusUser;
 import lombok.AllArgsConstructor;
